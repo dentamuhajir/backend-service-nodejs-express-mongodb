@@ -4,3 +4,18 @@
 # Install dependency
     npm i express
     npm i nodemon -D
+
+# Reference
+    https://www.youtube.com/watch?v=_7UQPve99r4
+# Mongo
+    mongodb atlas
+    https://account.mongodb.com/account/login
+    user: dentamuhajir
+    password: PwKA6nAgI7y1p086
+    7gYr72jCQ1dsxsA3
+
+    npm install mongodb
+
+    npm install mongoose // ODM is like ORM JPA in spring
+
+ 
