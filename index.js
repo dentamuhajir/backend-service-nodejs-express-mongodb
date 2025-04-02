@@ -2,12 +2,19 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 
+app.use(express.json())
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
 })
 
 app.get('/', (req, res) => {
     res.send("Hello from Node API with nodemon")
+})
+
+app.post('/api/products', (req, res) => {
+    console.log(req.body)
+    res.send(req.body)
 })
 
 
