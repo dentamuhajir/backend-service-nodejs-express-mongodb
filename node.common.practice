@@ -1,0 +1,51 @@
+1. Route-first + Middleware driven design
+Instead of a strict Controller-Service-Repository pattern, Node.js apps often start with routes and use middleware for things like auth, logging, validation, etc.
+
+// routes/user.js
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/user');
+
+router.get('/', userController.getUsers);
+
+module.exports = router;
+2. Controller contains logic or delegates minimally
+In small/medium apps, controller functions might include DB calls directly or call helpers — without layering unnecessary abstractions.
+
+// controllers/user.js
+const db = require('../db');
+
+exports.getUsers = async (req, res) => {
+  const users = await db.query('SELECT * FROM users');
+  res.json(users);
+};
+3. Use of helper/utils instead of services
+Instead of a formal "service" layer, devs use utility/helper modules.
+
+// utils/hash.js
+const bcrypt = require('bcrypt');
+module.exports.hashPassword = (pwd) => bcrypt.hash(pwd, 10);
+4. Minimal abstraction until needed
+Only add complexity (like services or repositories) when the logic grows or is reused.
+
+🔥 Optional but Common Tools
+
+Feature	Common Tool
+Validation	Joi, express-validator
+DB ORM	Prisma, Mongoose, Sequelize
+Async Errors	express-async-errors
+Env Management	dotenv
+Logging	winston, pino
+🧱 Folder Structure (Minimalist Style)
+
+project/
+├── routes/
+│   └── user.js
+├── controllers/
+│   └── user.js
+├── utils/
+│   └── hash.js
+├── db/
+│   └── index.js
+├── .env
+└── app.js
