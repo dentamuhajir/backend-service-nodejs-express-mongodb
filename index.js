@@ -1,6 +1,6 @@
-const express   = require('express')
-const mongoose  = require('mongoose')
-const routes    = require('./routes/api.route.js')
+const express = require('express')
+const mongoose = require('mongoose')
+const routes = require('./routes/api.route.js')
 
 const app = express()
 app.use(express.json())
