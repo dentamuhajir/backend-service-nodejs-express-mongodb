@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const Product = require('./models/product.model.js');
 
 const app = express()
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
