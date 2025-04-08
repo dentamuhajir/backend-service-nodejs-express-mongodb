@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const Product = require('./models/product.model.js');
 
 const app = express()
- app.use(express.json())
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send("Hello from Node API with nodemon")
@@ -28,7 +29,7 @@ app.post('/api/products', async (req, res) => {
 })
 
 
-mongoose.connect("mongodb+srv://dentamuhajir:eW95wn1yPBfD6oPS@backenddb.oiomyfk.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB&ssl=true")
+mongoose.connect(process.env.DATABASE_URL)
 .then(() => {
     console.log("Connected to database! ")
     app.listen(3000, () => {
