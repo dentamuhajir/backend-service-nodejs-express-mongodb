@@ -1,10 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes/api.route.js')
+const errorMiddleware  = require('./middleware/error.middleware.js')
 
 const app = express()
 app.use(express.json())
 app.use(routes)
+app.use(errorMiddleware)
+
 
 mongoose.connect(process.env.DATABASE_URL).then(() => {
     console.log("Connected to database! ")
