@@ -19,7 +19,31 @@ const postProduct = async(request, response, next) => {
         next(error)
     }
 }
+
+const deleteProduct = async(request, response, next) => {
+    try {
+        // how to get params
+        //const id = request.params.productId
+        //const id = '67ee633fd08176ae9b842ae0'
+        // invalid ID
+        const id = '507f1f77bcf86cd799439011'
+
+        const product = await Product.findById(id).exec()
+
+        if(!product) {
+            console.log("product not found");
+            return
+        }
+
+        console.log(product)
+        return
+    } catch(error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     getProduct,
     postProduct,
+    deleteProduct,
 }
