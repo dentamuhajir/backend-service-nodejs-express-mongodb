@@ -11,6 +11,19 @@ const getProduct = async(request, response, next) => {
     }
 }
 
+const getDetailProduct = async(request, response, next) => {
+    try {
+        const id = request.params.productId
+        const product = await service.getDetailProduct(id)
+        if(!product) {
+            return next({ status: 404, message: 'Product not found' });
+        }
+        response.status(200).json(product)
+    } catch(error) {
+        next(error)
+    }
+}
+
 const postProduct = async(request, response, next) => {
     try {
         const product = await Product.create(request.body)
@@ -31,14 +44,11 @@ const deleteProduct = async(request, response, next) => {
         const product = await Product.findById(id).exec()
 
         if(!product) {
-            console.log("product not found");
-            return
+            return next({ status: 404, message: 'Product not found' });
         }
 
-        console.log(product)
-        return
     } catch(error) {
-        console.log(error)
+        next(error)
     }
 }
 
@@ -46,4 +56,5 @@ module.exports = {
     getProduct,
     postProduct,
     deleteProduct,
+    getDetailProduct
 }
