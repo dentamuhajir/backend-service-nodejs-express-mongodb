@@ -8,7 +8,7 @@
     "serve": "nodemon --env-file=.env index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Denta Muhajir",
   "license": "ISC",
   "description": "",
   "dependencies": {
