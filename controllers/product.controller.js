@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Product = require('../models/product.model.js');
-const service = require('../services/product.service.js')
+const service = require('../services/product.service.js');
 
 const getProduct = async(request, response, next) => {
     try { 
@@ -33,6 +33,16 @@ const postProduct = async(request, response, next) => {
     }
 }
 
+const updateProduct = async(request, response, next) => {
+    try {
+        const id = request.params.productId
+        const product = await service.updateProduct(id, request.body)
+        response.status(200).json({ status: "Success", message: 'Product updated'})
+    } catch(error) {
+        next(error)
+    }
+}
+
 const deleteProduct = async(request, response, next) => {
     try {
         // how to get params
@@ -56,5 +66,6 @@ module.exports = {
     getProduct,
     postProduct,
     deleteProduct,
-    getDetailProduct
+    getDetailProduct,
+    updateProduct
 }

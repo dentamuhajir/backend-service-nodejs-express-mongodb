@@ -7,7 +7,12 @@ const getDetailProduct = async(id) => {
     return await Product.findById(id)    
 }
 
+const updateProduct = async(id, data) => {
+    return await Product.findByIdAndUpdate(id, data)
+}
+
 module.exports = {
     getProducts,
-    getDetailProduct
+    getDetailProduct,
+    updateProduct
 }
