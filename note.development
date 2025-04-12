@@ -6,7 +6,10 @@
     npm i nodemon -D
 
 # Reference
+    https://roadmap.sh/nodejs
     https://www.youtube.com/watch?v=_7UQPve99r4
+    https://github.com/ProgrammerZamanNow/belajar-nodejs-restful-api/
+    https://blog.appsignal.com/2022/08/17/build-a-crud-app-with-nodejs-and-mongodb.html
 # Mongo
     mongodb atlas
     https://account.mongodb.com/account/login
@@ -18,4 +21,7 @@
 
     npm install mongoose // ODM is like ORM JPA in spring
 
- 
+# Install Homebrew formula without updating
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install <formula> 
+# Test API with curl
+    curl --request GET 'http://localhost:3000/api/products' | jq
