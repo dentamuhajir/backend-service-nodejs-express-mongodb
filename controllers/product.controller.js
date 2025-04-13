@@ -46,17 +46,20 @@ const updateProduct = async(request, response, next) => {
 const deleteProduct = async(request, response, next) => {
     try {
         // how to get params
-        //const id = request.params.productId
-        //const id = '67ee633fd08176ae9b842ae0'
-        // invalid ID
-        const id = '507f1f77bcf86cd799439011'
+        const id = request.params.productId
+        // invalalid ID
+        //const id = '507f1f77bcf86cd799439011'
 
-        const product = await Product.findById(id).exec()
-
-        if(!product) {
-            return next({ status: 404, message: 'Product not found' });
-        }
-
+        const product = await Product.findByIdAndDelete(id).then(deletedUser => {
+            if (deletedUser) {
+                response.status(200).json({ status: "Success", message: "User deleted successfully"})
+            } else {
+                return next({ status: 404, message: 'Product not found' });
+            }
+        })
+        .catch(error => {
+            next(error)
+        });
     } catch(error) {
         next(error)
     }
