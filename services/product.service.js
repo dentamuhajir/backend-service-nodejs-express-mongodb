@@ -1,4 +1,9 @@
 const Product = require('../models/product.model.js')
+
+const postProduct = async(requestBody) => {
+    return await Product.post(requestBody)
+}
+
 const getProducts  = async() => {    
     return await Product.find({})
 }
@@ -14,5 +19,6 @@ const updateProduct = async(id, data) => {
 module.exports = {
     getProducts,
     getDetailProduct,
-    updateProduct
+    updateProduct,
+    postProduct,
 }
