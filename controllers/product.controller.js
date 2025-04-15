@@ -26,7 +26,7 @@ const getDetailProduct = async(request, response, next) => {
 
 const postProduct = async(request, response, next) => {
     try {
-        const product = await Product.create(request.body)
+        const product = await service.postProduct(request.body)
         response.status(200).json(product)
     } catch(error) {
         next(error)
