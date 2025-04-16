@@ -25,3 +25,14 @@
     HOMEBREW_NO_AUTO_UPDATE=1 brew install <formula> 
 # Test API with curl
     curl --request GET 'http://localhost:3000/api/products' | jq
+    curl  -X POST \
+        'localhost:3000/api/products' \
+        --header 'Accept: */*' \
+        --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "name" : "iPhone 16 pro",
+        "quantity": 10,
+        "price": 9.6
+        }'
+    curl --request DELETE 'http://localhost:3000/api/products/67f74bb0677e39bbc1a4784' | jq
