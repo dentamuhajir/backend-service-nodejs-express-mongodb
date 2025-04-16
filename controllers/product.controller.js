@@ -65,10 +65,25 @@ const deleteProduct = async(request, response, next) => {
     }
 }
 
+const deleteManyProduct = async(request, response, next) => {
+    const {ids: productIds} = request.body 
+    if(!Array.isArray(productIds)) {
+        return next({ status: 500, message: 'Product Ids should be an array' });
+    }
+
+    for(const id of productIds) {
+        console.log("id = ", id)
+    }
+    
+    console.log(productIds)
+    return 
+}
+
 module.exports = {
     getProduct,
     postProduct,
     deleteProduct,
     getDetailProduct,
-    updateProduct
+    updateProduct,
+    deleteManyProduct
 }
