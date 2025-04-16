@@ -1,7 +1,7 @@
 const Product = require('../models/product.model.js')
 
 const postProduct = async(requestBody) => {
-    return await Product.post(requestBody)
+    return await Product.create(requestBody)
 }
 
 const getProducts  = async() => {    
