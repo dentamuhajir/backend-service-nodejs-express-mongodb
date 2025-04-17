@@ -66,17 +66,28 @@ const deleteProduct = async(request, response, next) => {
 }
 
 const deleteManyProduct = async(request, response, next) => {
-    const {ids: productIds} = request.body 
-    if(!Array.isArray(productIds)) {
-        return next({ status: 500, message: 'Product Ids should be an array' });
-    }
+    try {
 
-    for(const id of productIds) {
-        console.log("id = ", id)
-    }
-    
-    console.log(productIds)
-    return 
+        const {ids: productIds} = request.body 
+        const idToDelete = []
+        if(!Array.isArray(productIds)) {
+            return next({ status: 500, message: 'Product Ids should be an array' });
+        }
+        
+        for(const id of productIds) {
+            idToDelete.push(id)
+        }
+
+        Product.deleteMany({ _id: {$in: idToDelete} }).then(deletedProduct => {
+            if(deletedProduct){
+                return response.status(200).json({ status: "Success", message: "deleted product successfully"})
+            } else  {
+                return next({ status: 404, message: 'Product not found' });
+            }
+        })
+    } catch(error) {
+        next(error)
+    }    
 }
 
 module.exports = {

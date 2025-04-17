@@ -36,3 +36,6 @@
         "price": 9.6
         }'
     curl --request DELETE 'http://localhost:3000/api/products/67f74bb0677e39bbc1a4784' | jq
+    curl --request DELETE 'http://localhost:3000/api/products/delete/many' | jq
+    curl --request GET 'http://localhost:3000/api/products' | jq
+    
